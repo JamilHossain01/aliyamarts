@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-int _pageIndex = 0;
+int _pageIndex = 1;
 final List<Widget> _pages = [
   const HomeScreen(),
   const FavouriteScreen(),
