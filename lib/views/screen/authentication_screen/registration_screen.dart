@@ -13,6 +13,7 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthController _authController = AuthController();
+  bool _isLoading = false;
 
   late String email;
   late String name;
@@ -20,6 +21,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool _obscureText = true;
 
   registerUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     String res = await _authController.registerNewUser(email, password, name);
     if (res == "success" && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -29,13 +33,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => const LoginScreen(),
         ),
       );
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Registration failed: $res')),
       );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -152,13 +160,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         child: Center(
-                          child: Text(
-                            'Sign Up',
-                            style: GoogleFonts.getFont("Nunito Sans",
-                                fontSize: 17,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
+                          child: _isLoading
+                              ? const CircularProgressIndicator(
+                                  color: Colors.black,
+                                )
+                              : Text(
+                                  'Sign Up',
+                                  style: GoogleFonts.getFont("Nunito Sans",
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white),
+                                ),
                         ),
                       ),
                     ),
@@ -177,7 +189,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
+                                builder: (context) => const LoginScreen(),
                               ),
                             );
                           },

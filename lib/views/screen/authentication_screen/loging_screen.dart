@@ -14,12 +14,16 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthController _authController = AuthController();
+  bool _isLoading = false;
 
   late String email = ''; // Initialize with empty strings
   late String password = ''; // Initialize with empty strings
-  bool _obscureText = true; // For password visibility toggle
+  bool _obscureText = true;
 
   loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     // Ensure the widget is still mounted
     String res = await _authController.loginUser(email, password);
     if (res == 'success' && mounted) {
@@ -36,6 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
       // Show error message
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Login failed: $res')));
+    } else {
+      setState(() {
+        bool _isLoading = false;
+      });
     }
   }
 
@@ -131,15 +139,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       child: Center(
-                        child: Text(
-                          'Sign In',
-                          style: GoogleFonts.getFont(
-                            "Nunito Sans",
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                        ),
+                        child: _isLoading
+                            ? CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : Text(
+                                'Sign In',
+                                style: GoogleFonts.getFont(
+                                  "Nunito Sans",
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
                       ),
                     ),
                   ),
