@@ -1,6 +1,4 @@
-import 'dart:io';
-
-import 'package:aliyamart/views/screen/authentication_screen/loging_screen.dart';
+import 'package:aliyamart/views/screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LogingScreen(),
+      home: const MainScreen(),
     );
   }
 }

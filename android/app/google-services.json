@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "721481966117",
+    "project_id": "whatsapp-3224b",
+    "storage_bucket": "whatsapp-3224b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721481966117:android:55ed98d4bc8279c4f815cc",
+        "android_client_info": {
+          "package_name": "com.jamil.aliyamart.aliyamart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8pNaHRQcZ1_rXC9HloVvn9NmBlKjErgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
