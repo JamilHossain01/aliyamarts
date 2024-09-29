@@ -48,7 +48,7 @@ class _BannerWidgetState extends State<BannerWidget> {
               },
               options: CarouselOptions(
                 height: widget.height, // Set carousel height
-                autoPlay: true, // Auto-play
+                autoPlay: false, // Auto-play
                 aspectRatio: widget.width / widget.height, // Aspect ratio
                 enlargeCenterPage: true, // Enlarge center image
                 onPageChanged: (index, reason) {

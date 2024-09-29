@@ -1,7 +1,10 @@
+import 'package:aliyamart/controller/category_controller.dart';
 import 'package:aliyamart/views/screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'firebase_options.dart';
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         // ignore: prefer_const_constructors
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -28,6 +31,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: MainScreen(),
+      initialBinding: BindingsBuilder(
+        () {
+          Get.put<CategoryController>(CategoryController());
+        },
+      ),
     );
   }
 }
