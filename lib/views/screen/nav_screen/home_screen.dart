@@ -1,3 +1,5 @@
+import 'package:aliyamart/views/screen/nav_screen/widgets/banner_widget.dart';
+import 'package:aliyamart/views/screen/nav_screen/widgets/header_widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,7 +8,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('HomeScrren')),
+      body: Column(
+        children: [
+          HeaderWidgets(),
+          BannerWidget(height: 200, width: MediaQuery.of(context).size.width),
+        ],
+      ),
     );
   }
 }
